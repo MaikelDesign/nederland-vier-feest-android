@@ -1,5 +1,7 @@
 # README #
 
+![alt text](https://git.fhict.nl/I295741/nederland-vier-feest-android/raw/0dce52758abb13af22a3183877188042fca68d5a/img/veldhovenviertfeest.png "Nederland viert Feest")
+
 ### What is this repository for? ###
 
 With this application we want to make a clear overview with all events within the city. This is a aggrandizement of the current website www.veldhovenviertfeest.nl. We are making a Android application.
