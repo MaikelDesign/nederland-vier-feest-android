@@ -13,6 +13,7 @@ import com.android.volley.toolbox.Volley;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void getJson() {
         String baseURL = "http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923";
-        final TextView mTextView = (TextView) MainActivity.this.findViewById(R.id.mTextView);
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         // Request a string response from the provided URL.
@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        mTextView.setText("Response is: "+ response.substring(0,500));
+                        Toast.makeText(MainActivity.this,response.substring(0,500),Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mTextView.setText("That didn't work!");
+                Toast.makeText(MainActivity.this,"That didn't work!",Toast.LENGTH_LONG).show();
             }
         });
         // Add the request to the RequestQueue.
