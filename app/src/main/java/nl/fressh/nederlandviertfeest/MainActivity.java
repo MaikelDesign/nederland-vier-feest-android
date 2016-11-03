@@ -2,7 +2,6 @@ package nl.fressh.nederlandviertfeest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -11,11 +10,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-=======
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
->>>>>>> 796b6079415125a42fcd815a482dafd07652bb00
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
         getJson();
+
+        populateListView();
     }
 
     public void getJson() {
@@ -53,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-=======
-        populateListView();
-
->>>>>>> 796b6079415125a42fcd815a482dafd07652bb00
     }
 
     private void populateListView(){
