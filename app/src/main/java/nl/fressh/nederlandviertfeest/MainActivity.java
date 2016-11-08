@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private void populateListView(){
 
         // create list items
-        String[] myItems = {"one", "two", "three", "four", "five"};
+        String[] myItems = {"one", "two", "three", "four", "five", "six"};
 //        ImageView image;
 
         // build adapter

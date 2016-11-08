@@ -10,23 +10,22 @@
         android:src="@drawable/eventimg" />
 
     <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imageView1"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="Title" />
+
+    <TextView
         android:id="@+id/detaillist"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/imageView1"
-
+        android:paddingLeft="10dp"
         android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/imageView1"
-        android:textSize="16sp"
-        android:text="Title" />
-
-
 
 </RelativeLayout>
