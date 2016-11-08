@@ -1,5 +1,6 @@
 package nl.fressh.nederlandviertfeest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements LoadJson.Listener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         Toast.makeText(this, mAndroidMapList.get(i).get(KEY_NAME),Toast.LENGTH_LONG).show();
+
+        Intent j = new Intent(MainActivity.this, ListDetailActivity.class);
+        startActivity(j);
     }
 
     private void loadListView() {
