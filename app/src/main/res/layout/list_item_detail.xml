@@ -1,62 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorBlue"
         android:theme="?attr/actionBarTheme"
         android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar" />
+        android:id="@+id/toolbar"
+        android:elevation="4dp"
+        />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
-
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+         <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             app:srcCompat="@drawable/eventimg"
             android:id="@+id/imageView2"
-            android:scaleType="fitEnd"
-            android:layout_gravity="center"
-            android:layout_alignParentTop="true"
-            />
+            android:scaleType="centerCrop"
+        />
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="3"
-            android:gravity="bottom"
-            >
-
+            android:orientation="vertical">
 
             <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"/>
 
-                android:id="@+id/textView2"
-                android:layout_weight="1" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
 
-            <TextView
-                android:text="TextView"
-                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                android:layout_weight="1" />
+
+                <TextView
+                    android:text="info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/textView2"
+                    android:layout_weight="1"
+                    android:background="@color/colorOrange"
+                    />
+
+                <TextView
+                    android:text="maps"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/textView2"
+                    android:background="@color/colorTitle"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
-
-
-</RelativeLayout>
+</FrameLayout>
