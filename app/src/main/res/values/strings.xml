@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Nederland viert Feest</string>
     <string name="title_activity_list_detail" translatable="false">ListDetailActivity</string>
+    <string name="action_about">About</string>
+    <string name="action_opdr1">opdracht1</string>
+    <string name="Over_Nederland_Viert_Feest">Over Nederland Viert Feest</string>
 </resources>

@@ -6,15 +6,7 @@
 
     >
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:theme="?attr/actionBarTheme"
-        android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar"
-        android:elevation="4dp"
-        />
+
 
          <ImageView
             android:layout_width="fill_parent"
@@ -45,17 +37,18 @@
 
                 <TextView
                     android:text="info"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="fill_parent"
+                    android:padding="5dp"
                     android:id="@+id/textView2"
                     android:layout_weight="1"
+                    android:textSize="18sp"
                     android:background="@color/colorOrange"
                     />
 
                 <TextView
                     android:text="maps"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:id="@+id/textView2"
                     android:background="@color/colorTitle"

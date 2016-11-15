@@ -13,14 +13,17 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ListDetailActivity"
             android:label="@string/title_activity_list_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/Over_Nederland_Viert_Feest"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
