@@ -6,4 +6,6 @@
     <color name="colorTitle">#FFFFFF</color>
     <color name="colorBlue">#11A2D4</color>
     <color name="colorOrange">#F87B13</color>
+
+    <color name="timestamp">#888888</color>
 </resources>

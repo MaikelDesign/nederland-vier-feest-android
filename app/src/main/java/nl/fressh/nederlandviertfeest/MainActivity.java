@@ -1,114 +1,147 @@
 package nl.fressh.nederlandviertfeest;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
-
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import nl.fressh.nederlandviertfeest.model.EventDates;
+import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
+import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
-public class MainActivity extends AppCompatActivity implements LoadJson.Listener, AdapterView.OnItemClickListener {
-
-    private ListView mListView;
-
-    public static final String URL = "http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923";
+// TODO make LoadJson class: add LoadJson.Listener to implements
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private List<HashMap<String, String>> mAndroidMapList = new ArrayList<>();
+    // Log tag
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final String KEY_ID = "id";
+    // Event json url
+    private static final String url = "http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923";
+    private ProgressDialog pDialog;
+    private List<EventsInformation> eventsInformationList = new ArrayList<EventsInformation>();
+    private ListView listView;
+    private CustomListAdapter adapter;
+
     private static final String KEY_NAME = "name";
-    private static final String KEY_DESCR = "description";
-    private static final String KEY_LOCATION = "location_details.name";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mListView = (ListView) findViewById(R.id.list_view);
-        mListView.setOnItemClickListener(this);
-        new LoadJson(this).execute(URL);
+        listView = (ListView) findViewById(R.id.list);
+        adapter = new CustomListAdapter(this, eventsInformationList);
+        listView.setAdapter(adapter);
+
+        pDialog = new ProgressDialog(this);
+        // Showing progress dialog before making http request
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+        // jsonObjReq
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url, null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        try {
+                            JSONArray eventArray = response.getJSONArray("events");
+                            for (int i = 0; i < eventArray.length(); i++) {
+                                JSONObject event = eventArray.getJSONObject(i);
+                                EventsInformation eventsInformation = new EventsInformation();
+
+                                eventsInformation.setName(event.getString("name"));
+                                eventsInformation.setThumbnailUrl(event.getJSONArray("images").getString(0));
+                                long timestamp = Long.parseLong(event.getString("timestamp_b")) * 1000;
+                                eventsInformation.setTimeStampB(getDate(timestamp));
+                                eventsInformation.setDescription(event.getString("description"));
+                                eventsInformation.setLocationName(event.getJSONObject("location_details").getString("name"));
+                                eventsInformation.setAddress(event.getJSONObject("location_details").getString("address"));
+                                eventsInformation.setPlace(event.getJSONObject("location_details").getString("place"));
+
+                                // adding event details to eventsInformationList array
+                                eventsInformationList.add(eventsInformation);
+                                hidePDialog();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        // notifying list adapter about data changes
+                        // so that it renders the list view with updated data
+                        adapter.notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                // hide the progress dialog
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
     }
 
     @Override
-    public void onLoaded(List<EventDates> androidList) {
-
-        for (EventDates android : androidList) {
-
-            HashMap<String, String> map = new HashMap<>();
-
-            map.put(KEY_ID, android.getId());
-            map.put(KEY_NAME, android.getName());
-            map.put(KEY_DESCR, android.getDescription());
-            map.put(KEY_LOCATION, android.getLocation());
-
-            mAndroidMapList.add(map);
-        }
-
-        loadListView();
-    }
-
-    @Override
-    public void onError() {
-
-        Toast.makeText(this, "Error !", Toast.LENGTH_SHORT).show();
+    public void onDestroy() {
+        super.onDestroy();
+        hidePDialog();
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        Toast.makeText(this, mAndroidMapList.get(i).get(KEY_NAME),Toast.LENGTH_LONG).show();
-
+        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+        
         Intent j = new Intent(MainActivity.this, ListDetailActivity.class);
         startActivity(j);
     }
 
-    private void loadListView() {
 
-        ListAdapter adapter = new SimpleAdapter(MainActivity.this, mAndroidMapList, R.layout.list_item,
-                new String[] { KEY_NAME, KEY_DESCR },
-                new int[] { R.id.textTitle,R.id.detailList });
-
-        mListView.setAdapter(adapter);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-//            return true;
-            Intent about = new Intent(MainActivity.this, AboutActivity.class);
-            startActivity(about);
-
-        } else if(id == R.id.action_opdracht1){
-            return true;
+    private void hidePDialog() {
+        if (pDialog != null) {
+            pDialog.dismiss();
+            pDialog = null;
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public String getDate(long timeStamp) {
+
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date netDate = (new Date(timeStamp));
+            return dateFormat.format(netDate);
+        } catch (Exception ex) {
+            return "xx";
+        }
     }
 }

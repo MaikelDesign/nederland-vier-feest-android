@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="name">17dp</dimen>
+    <dimen name="location">15dip</dimen>
+    <dimen name="timestamp">12dip</dimen>
 </resources>
