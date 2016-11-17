@@ -1,10 +1,12 @@
 package nl.fressh.nederlandviertfeest.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Ruben on 16-11-16.
  */
 
-public class EventsInformation {
+public class EventsInformation implements Serializable {
     private String name;
     private String thumbnailUrl;
     private String timeStampB;

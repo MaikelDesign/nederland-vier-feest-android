@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, eventsInformationList);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
 
         pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
@@ -118,12 +119,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int postion, long l) {
 
         Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
+        EventsInformation eventInformation = (EventsInformation) adapterView.getAdapter().getItem(postion);
         
-        Intent j = new Intent(MainActivity.this, ListDetailActivity.class);
-        startActivity(j);
+        Intent intent = new Intent(MainActivity.this, ListDetailActivity.class);
+        intent.putExtra("eventInformation", eventInformation);
+        startActivity(intent);
     }
 
 
