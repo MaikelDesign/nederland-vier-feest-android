@@ -32,12 +32,14 @@ public class ListDetailActivity extends AppCompatActivity {
         // get EventsInformation type
         EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
 
+        setTitle(eventsInformation.getName());
+
         // convert imageView to NetworkImageView to view images from the web
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.imageView);
 
-        // getting events data for the row
+        // getting events data
 
         // thumbnail image
         thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
