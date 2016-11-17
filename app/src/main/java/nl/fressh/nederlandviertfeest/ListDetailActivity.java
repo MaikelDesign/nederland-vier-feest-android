@@ -9,6 +9,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +30,9 @@ public class ListDetailActivity extends AppCompatActivity {
 
         EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
 
-        TextView info = (TextView)findViewById(R.id.textView2);
+        final TextView info = (TextView)findViewById(R.id.textView2);
         info.setText(eventsInformation.getDescription());
+
 
         info.setOnClickListener(new View.OnClickListener(){
 
@@ -38,8 +43,8 @@ public class ListDetailActivity extends AppCompatActivity {
 
         });
 
-    }
 
+    }
 
 
 }

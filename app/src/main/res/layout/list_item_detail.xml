@@ -44,13 +44,14 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:background="@color/colorOrange"
+
                     />
 
                 <TextView
                     android:text="maps"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/textView2"
+                    android:id="@+id/textView1"
                     android:background="@color/colorTitle"
                     android:layout_weight="1" />
 
