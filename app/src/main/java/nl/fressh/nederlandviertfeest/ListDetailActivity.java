@@ -1,24 +1,24 @@
 package nl.fressh.nederlandviertfeest;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
-public class ListDetailActivity extends AppCompatActivity {
+public class ListDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     ImageLoader imageLoader = null;
 
@@ -48,6 +48,10 @@ public class ListDetailActivity extends AppCompatActivity {
         TextView info = (TextView)findViewById(R.id.info);
         info.setText(eventsInformation.getDescription());
 
+        // google maps
+        MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        map.getMapAsync(this);
+
         info.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -58,7 +62,18 @@ public class ListDetailActivity extends AppCompatActivity {
         });
 
     }
+    
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng position = new LatLng(51.429630, 5.404197);
 
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(position)      // Sets the center of the map to Mountain View
+                .zoom(17)                   // Sets the zoom
+                .build();                   // Creates a CameraPosition from the builder
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
+        googleMap.addMarker(new MarkerOptions().position(position));
 
+    }
 }
