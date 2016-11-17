@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int postion, long l) {
 
-        Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
         EventsInformation eventInformation = (EventsInformation) adapterView.getAdapter().getItem(postion);
         
         Intent intent = new Intent(MainActivity.this, ListDetailActivity.class);

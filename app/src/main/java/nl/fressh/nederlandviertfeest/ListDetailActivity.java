@@ -9,13 +9,18 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
 public class ListDetailActivity extends AppCompatActivity {
 
+    ImageLoader imageLoader = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +29,21 @@ public class ListDetailActivity extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+        // get EventsInformation type
         EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
 
-        TextView info = (TextView)findViewById(R.id.textView2);
+        // convert imageView to NetworkImageView to view images from the web
+        if (imageLoader == null)
+            imageLoader = AppController.getInstance().getImageLoader();
+        NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.imageView);
+
+        // getting events data for the row
+
+        // thumbnail image
+        thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
+
+        // description
+        TextView info = (TextView)findViewById(R.id.info);
         info.setText(eventsInformation.getDescription());
 
         info.setOnClickListener(new View.OnClickListener(){
