@@ -5,14 +5,11 @@
     android:layout_height="fill_parent"
 
     >
-
-
-
-         <ImageView
+         <com.android.volley.toolbox.NetworkImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             app:srcCompat="@drawable/eventimg"
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView"
             android:scaleType="centerCrop"
         />
 
@@ -31,7 +28,6 @@
                 android:layout_height="0dp"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-
                 android:orientation="horizontal">
 
 
@@ -40,18 +36,17 @@
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:padding="5dp"
-                    android:id="@+id/textView2"
+                    android:id="@+id/info"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:background="@color/colorOrange"
-
                     />
 
                 <TextView
                     android:text="maps"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:id="@+id/textView1"
+                    android:id="@+id/maps"
                     android:background="@color/colorTitle"
                     android:layout_weight="1" />
 
