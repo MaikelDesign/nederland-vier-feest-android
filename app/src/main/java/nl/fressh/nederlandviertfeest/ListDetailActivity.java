@@ -1,8 +1,12 @@
 package nl.fressh.nederlandviertfeest;
 
+import android.content.Intent;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,12 +87,34 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.detail_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_calendar:
+                System.out.println("ADD TO CALENDAR");
+                return true;
+            case R.id.action_website:
+                System.out.println("GO TO WEBSITE");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(position)      // Sets the center of the map to Mountain View
-                .zoom(15)                   // Sets the zoom
-                .build();                   // Creates a CameraPosition from the builder
+                .zoom(15)              // Sets the zoom
+                .build();              // Creates a CameraPosition from the builder
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         googleMap.addMarker(new MarkerOptions().position(position));

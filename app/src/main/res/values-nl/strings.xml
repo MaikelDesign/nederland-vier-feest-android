@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">Nederland viert Feest</string>
     <string name="title_activity_list_detail">Informatie</string>
+    <string name="action_opdr1">opdracht1</string>
+    <string name="action_about">Over</string>
+    <string name="Over_Nederland_Viert_Feest">Over Nederland Viert Feest</string>
+    <string name="action_website">Bezoek website</string>
+    <string name="action_calendar">Zet evenement in agenda</string>
 </resources>

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -112,6 +115,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_opdracht1:
+                System.out.println("opdracht");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+        @Override
     public void onDestroy() {
         super.onDestroy();
         hidePDialog();
