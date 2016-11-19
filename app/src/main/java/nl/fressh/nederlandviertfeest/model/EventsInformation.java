@@ -14,6 +14,7 @@ public class EventsInformation implements Serializable {
     private String locationName;
     private String address;
     private String place;
+    private String website;
 
 
 
@@ -71,5 +72,13 @@ public class EventsInformation implements Serializable {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }

@@ -2,6 +2,7 @@ package nl.fressh.nederlandviertfeest;
 
 import android.content.Intent;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -90,6 +91,12 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.detail_menu, menu);
+        // check if there is a website available
+        EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
+        if (eventsInformation.getWebsite().equals("")) {
+            MenuItem item = menu.findItem(R.id.action_website);
+            item.setVisible(false);
+        }
         return true;
     }
 
@@ -101,7 +108,15 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
                 System.out.println("ADD TO CALENDAR");
                 return true;
             case R.id.action_website:
-                System.out.println("GO TO WEBSITE");
+                // get EventsInformation type
+                EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
+                String url = eventsInformation.getWebsite();
+                // check if http:// or https:// is before the url
+                if (!url.startsWith("http://") && !url.startsWith("https://"))
+                    url = "http://" + url;
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

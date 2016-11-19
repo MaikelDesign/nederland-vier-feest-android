@@ -88,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 eventsInformation.setLocationName(event.getJSONObject("location_details").getString("name"));
                                 eventsInformation.setAddress(event.getJSONObject("location_details").getString("address"));
                                 eventsInformation.setPlace(event.getJSONObject("location_details").getString("place"));
+                                try {
+                                    eventsInformation.setWebsite(event.getJSONObject("location_details").getString("website"));
+                                } catch (Exception ex) {
+                                    eventsInformation.setWebsite("");
+                                }
 
                                 // adding event details to eventsInformationList array
                                 eventsInformationList.add(eventsInformation);
@@ -165,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public String getDate(long timeStamp) {
 
         try {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
             Date netDate = (new Date(timeStamp));
             return dateFormat.format(netDate);
         } catch (Exception ex) {
