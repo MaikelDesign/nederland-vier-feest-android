@@ -6,4 +6,10 @@
     <dimen name="name">17dp</dimen>
     <dimen name="location">15dip</dimen>
     <dimen name="timestamp">12dip</dimen>
+    <dimen name="textSize">40sp</dimen>
+    <dimen name="paddingTextBox">30dp</dimen>
+    <dimen name="paddingTextBox2">60dp</dimen>
+    <dimen name="paddingMarginRoot">2dp</dimen>
+    <dimen name="buttonMargin">2dp</dimen>
+    <dimen name="paddingTransitionGroup">10dp</dimen>
 </resources>

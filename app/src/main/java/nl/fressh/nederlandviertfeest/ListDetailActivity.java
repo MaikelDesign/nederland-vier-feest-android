@@ -4,10 +4,16 @@ import android.content.Intent;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.ChangeBounds;
+import android.transition.Scene;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
@@ -31,6 +38,10 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     ImageLoader imageLoader = null;
     LatLng position;
+    boolean isInInitialScene = true;
+    final int transistionDurationInMs = 800;
+    ViewGroup msceneRoot;
+    Map<String,Transition> mTransitionByName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +95,20 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
             }
 
         });
+
+
+        // animation info
+        msceneRoot = (ViewGroup) findViewById(R.id.rootView);
+
+        Button btn = (Button) findViewById(R.id.button1);
+//        TextView infoView = (TextView) findViewById(R.id.info);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("click btn");
+                performTransition(new ChangeBounds());
+            }
+        });
     }
 
     @Override
@@ -118,5 +143,16 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         googleMap.addMarker(new MarkerOptions().position(position));
+    }
+
+
+    private void performTransition(Transition transition) {
+        int layoutIdAtEndOfTransition = isInInitialScene ? R.layout.scene_end : R.layout.scene_start;
+
+//        Scene mAnotherScene = Scene.getSceneForLayout(msceneRoot, layoutIdAtEndOfTransition, ListDetailActivity.this);
+        Scene mAnotherScene = Scene.getSceneForLayout(msceneRoot, R.layout.scene_end, ListDetailActivity.this);
+
+        TransitionManager.go(mAnotherScene, transition);
+        isInInitialScene = !isInInitialScene;
     }
 }
