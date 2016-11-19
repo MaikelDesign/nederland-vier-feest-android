@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
 import nl.fressh.nederlandviertfeest.util.LruBitmapCache;
 
 public class AppController extends Application {

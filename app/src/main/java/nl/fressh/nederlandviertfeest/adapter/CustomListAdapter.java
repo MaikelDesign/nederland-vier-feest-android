@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 import nl.fressh.nederlandviertfeest.AppController;
 import nl.fressh.nederlandviertfeest.R;

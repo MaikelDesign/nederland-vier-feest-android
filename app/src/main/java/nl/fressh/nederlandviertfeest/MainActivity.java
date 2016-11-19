@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-        @Override
+    @Override
     public void onDestroy() {
         super.onDestroy();
         hidePDialog();
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int postion, long l) {
 
         EventsInformation eventInformation = (EventsInformation) adapterView.getAdapter().getItem(postion);
-        
+
         Intent intent = new Intent(MainActivity.this, ListDetailActivity.class);
         intent.putExtra("eventInformation", eventInformation);
         startActivity(intent);

@@ -46,7 +46,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
     boolean isInInitialScene = true;
     final int transistionDurationInMs = 800;
     ViewGroup msceneRoot;
-    Map<String,Transition> mTransitionByName;
+    Map<String, Transition> mTransitionByName;
     EventsInformation eventsInformation;
 
     @Override
@@ -70,7 +70,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
 
         // description
-        TextView info = (TextView)findViewById(R.id.info);
+        TextView info = (TextView) findViewById(R.id.info);
         info.setText(eventsInformation.getDescription());
 
         // get LatLong from address
@@ -93,10 +93,10 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         map.getMapAsync(this);
 
         // on text description click
-        info.setOnClickListener(new View.OnClickListener(){
+        info.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
             }
 
