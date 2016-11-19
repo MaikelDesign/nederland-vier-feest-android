@@ -1,5 +1,6 @@
 package nl.fressh.nederlandviertfeest;
 
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,11 +17,16 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
 public class ListDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     ImageLoader imageLoader = null;
+    LatLng position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +45,6 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
             imageLoader = AppController.getInstance().getImageLoader();
         NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.imageView);
 
-        // getting events data
-
         // thumbnail image
         thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
 
@@ -48,10 +52,26 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         TextView info = (TextView)findViewById(R.id.info);
         info.setText(eventsInformation.getDescription());
 
+        // get LatLong from address
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        String myLocation = eventsInformation.getAddress() + " " + eventsInformation.getPlace();
+        List<android.location.Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocationName(myLocation, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        android.location.Address address = addresses.get(0);
+        double latitude = address.getLatitude();
+        double longitude = address.getLongitude();
+
+        position = new LatLng(latitude, longitude);
+
         // google maps
         MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         map.getMapAsync(this);
 
+        // on text description click
         info.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -60,20 +80,17 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
             }
 
         });
-
     }
-    
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng position = new LatLng(51.429630, 5.404197);
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(position)      // Sets the center of the map to Mountain View
-                .zoom(17)                   // Sets the zoom
+                .zoom(15)                   // Sets the zoom
                 .build();                   // Creates a CameraPosition from the builder
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         googleMap.addMarker(new MarkerOptions().position(position));
-
     }
 }

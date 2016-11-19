@@ -32,7 +32,6 @@ import java.util.List;
 import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
-// TODO make LoadJson class: add LoadJson.Listener to implements
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private List<HashMap<String, String>> mAndroidMapList = new ArrayList<>();
