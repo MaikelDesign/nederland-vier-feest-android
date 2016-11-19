@@ -35,6 +35,13 @@
             android:name=".AboutActivity"
             android:label="@string/Over_Nederland_Viert_Feest"
             android:parentActivityName=".MainActivity"></activity>
+        <receiver android:name=".TimeZoneChangedReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
