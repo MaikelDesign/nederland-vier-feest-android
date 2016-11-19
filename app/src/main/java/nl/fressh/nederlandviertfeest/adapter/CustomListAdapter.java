@@ -26,7 +26,7 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<EventsInformation> eventsItems;
-    ImageLoader imageLoader = null; //AppController.getInstance().getImageLoader();
+    private ImageLoader imageLoader = null; //AppController.getInstance().getImageLoader();
 
     public CustomListAdapter(Activity activity, List<EventsInformation> eventsItems) {
         this.activity = activity;

@@ -25,7 +25,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -67,10 +66,12 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.imageView);
 
         // thumbnail image
+        assert thumbNail != null;
         thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
 
         // description
         TextView info = (TextView) findViewById(R.id.info);
+        assert info != null;
         info.setText(eventsInformation.getDescription());
 
         // get LatLong from address
@@ -82,6 +83,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert addresses != null;
         android.location.Address address = addresses.get(0);
         double latitude = address.getLatitude();
         double longitude = address.getLongitude();
