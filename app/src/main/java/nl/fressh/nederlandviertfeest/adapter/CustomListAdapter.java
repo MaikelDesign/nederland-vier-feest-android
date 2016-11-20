@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 import nl.fressh.nederlandviertfeest.AppController;
 import nl.fressh.nederlandviertfeest.R;
@@ -25,7 +26,7 @@ public class CustomListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<EventsInformation> eventsItems;
-    ImageLoader imageLoader = null; //AppController.getInstance().getImageLoader();
+    private ImageLoader imageLoader = null; //AppController.getInstance().getImageLoader();
 
     public CustomListAdapter(Activity activity, List<EventsInformation> eventsItems) {
         this.activity = activity;

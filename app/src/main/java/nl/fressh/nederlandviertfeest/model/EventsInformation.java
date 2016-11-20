@@ -17,7 +17,6 @@ public class EventsInformation implements Serializable {
     private String website;
 
 
-
     public String getName() {
         return name;
     }

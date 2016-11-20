@@ -1,6 +1,7 @@
 package nl.fressh.nederlandviertfeest;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,9 +25,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +37,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
-import nl.fressh.nederlandviertfeest.AddEventToCal;
 
 public class ListDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -43,7 +45,8 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
     boolean isInInitialScene = true;
     final int transistionDurationInMs = 800;
     ViewGroup msceneRoot;
-    Map<String,Transition> mTransitionByName;
+    Map<String, Transition> mTransitionByName;
+    EventsInformation eventsInformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         //setSupportActionBar(toolbar);
 
         // get EventsInformation type
-        EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
+        eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
 
         setTitle(eventsInformation.getName());
 
@@ -63,10 +66,12 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         NetworkImageView thumbNail = (NetworkImageView) findViewById(R.id.imageView);
 
         // thumbnail image
+        assert thumbNail != null;
         thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
 
         // description
-        TextView info = (TextView)findViewById(R.id.info);
+        TextView info = (TextView) findViewById(R.id.info);
+        assert info != null;
         info.setText(eventsInformation.getDescription());
 
         // get LatLong from address
@@ -78,6 +83,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert addresses != null;
         android.location.Address address = addresses.get(0);
         double latitude = address.getLatitude();
         double longitude = address.getLongitude();
@@ -89,10 +95,10 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         map.getMapAsync(this);
 
         // on text description click
-        info.setOnClickListener(new View.OnClickListener(){
+        info.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
             }
 
@@ -119,7 +125,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.detail_menu, menu);
         // check if there is a website available
-        EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
+        //EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
         if (eventsInformation.getWebsite().equals("")) {
             MenuItem item = menu.findItem(R.id.action_website);
             item.setVisible(false);
@@ -142,7 +148,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
                 return true;
             case R.id.action_website:
                 // get EventsInformation type
-                EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
+                //EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
                 String url = eventsInformation.getWebsite();
                 // check if http:// or https:// is before the url
                 if (!url.startsWith("http://") && !url.startsWith("https://"))
@@ -159,13 +165,19 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        IconGenerator mapsMarker = new IconGenerator(this);
+        mapsMarker.setStyle(IconGenerator.STYLE_BLUE);
+        Bitmap mapsMarkerBitmap = mapsMarker.makeIcon(eventsInformation.getLocationName());
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(position)      // Sets the center of the map to Mountain View
                 .zoom(15)              // Sets the zoom
                 .build();              // Creates a CameraPosition from the builder
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        googleMap.addMarker(new MarkerOptions().position(position));
+        googleMap.addMarker(new MarkerOptions()
+                .position(position)
+                .icon(BitmapDescriptorFactory.fromBitmap(mapsMarkerBitmap)));
     }
 
 

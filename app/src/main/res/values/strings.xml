@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Nederland viert Feest</string>
+    <string name="loading_information">Loading…</string>
     <string name="title_activity_list_detail">Information</string>
     <string name="action_about">About</string>
     <string name="action_opdr1">opdracht1</string>

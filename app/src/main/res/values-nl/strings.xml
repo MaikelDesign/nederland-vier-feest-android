@@ -7,4 +7,6 @@
     <string name="Over_Nederland_Viert_Feest">Over Nederland Viert Feest</string>
     <string name="action_website">Bezoek website</string>
     <string name="action_calendar">Zet evenement in agenda</string>
+    <string name="loading_information">Laden…</string>
+    <string name="swtch">Wissel</string>
 </resources>

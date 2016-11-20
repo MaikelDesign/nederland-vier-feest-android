@@ -1,6 +1,5 @@
 package nl.fressh.nederlandviertfeest;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -35,35 +33,33 @@ import java.util.List;
 import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
+import static nl.fressh.nederlandviertfeest.R.string.loading_information;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private List<HashMap<String, String>> mAndroidMapList = new ArrayList<>();
     // Log tag
     private static final String TAG = MainActivity.class.getSimpleName();
 
     // Event json url
     private static final String url = "http://app.veldhovenviertfeest.nl/json.php?key=lkj23oSDFLKijf9SD823oijslkhv89238WDFK23923";
     private ProgressDialog pDialog;
-    private List<EventsInformation> eventsInformationList = new ArrayList<EventsInformation>();
-    private ListView listView;
+    private List<EventsInformation> eventsInformationList = new ArrayList<>();
     private CustomListAdapter adapter;
-
-    private static final String KEY_NAME = "name";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, eventsInformationList);
+        assert listView != null;
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
         pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage(getString(loading_information));
         pDialog.show();
 
         // jsonObjReq
@@ -143,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-        @Override
+    @Override
     public void onDestroy() {
         super.onDestroy();
         hidePDialog();
@@ -153,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int postion, long l) {
 
         EventsInformation eventInformation = (EventsInformation) adapterView.getAdapter().getItem(postion);
-        
+
         Intent intent = new Intent(MainActivity.this, ListDetailActivity.class);
         intent.putExtra("eventInformation", eventInformation);
         startActivity(intent);

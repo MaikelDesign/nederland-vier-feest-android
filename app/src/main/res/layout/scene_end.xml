@@ -1,25 +1,23 @@
-<RelativeLayout android:layout_width="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_weight="1"
-    >
+    android:layout_weight="1">
 
-    <LinearLayout android:id="@+id/rootView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:orientation="horizontal">
 
         <TextView
-            android:text="info"
+            android:id="@+id/info"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="5dp"
-            android:id="@+id/info"
-            android:textSize="18sp"
             android:background="@color/colorOrange"
-            />
+            android:padding="5dp"
+            android:text="info"
+            android:textSize="18sp" />
 
         <fragment
             android:id="@+id/map"
