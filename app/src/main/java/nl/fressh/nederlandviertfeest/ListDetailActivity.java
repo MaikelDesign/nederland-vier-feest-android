@@ -117,6 +117,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
                 performTransition(new ChangeBounds());
             }
         });
+
     }
 
     @Override
@@ -138,6 +139,12 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         switch (item.getItemId()) {
             case R.id.action_calendar:
                 System.out.println("ADD TO CALENDAR");
+
+                AddEventToCal addEvent = new AddEventToCal();
+//                addEvent.onAddEventClicked();
+
+                startActivity(addEvent.onAddEventClicked());
+
                 return true;
             case R.id.action_website:
                 // get EventsInformation type
@@ -177,8 +184,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
     private void performTransition(Transition transition) {
         int layoutIdAtEndOfTransition = isInInitialScene ? R.layout.scene_end : R.layout.scene_start;
 
-//        Scene mAnotherScene = Scene.getSceneForLayout(msceneRoot, layoutIdAtEndOfTransition, ListDetailActivity.this);
-        Scene mAnotherScene = Scene.getSceneForLayout(msceneRoot, R.layout.scene_end, ListDetailActivity.this);
+        Scene mAnotherScene = Scene.getSceneForLayout(msceneRoot, layoutIdAtEndOfTransition, ListDetailActivity.this);
 
         TransitionManager.go(mAnotherScene, transition);
         isInInitialScene = !isInInitialScene;
