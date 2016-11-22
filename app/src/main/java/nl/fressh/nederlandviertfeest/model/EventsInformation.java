@@ -10,6 +10,7 @@ public class EventsInformation implements Serializable {
     private String name;
     private String thumbnailUrl;
     private String timeStampB;
+    private String timeStampE;
     private String description;
     private String locationName;
     private String address;
@@ -39,6 +40,14 @@ public class EventsInformation implements Serializable {
 
     public void setTimeStampB(String timeStampB) {
         this.timeStampB = timeStampB;
+    }
+
+    public String getTimeStampE() {
+        return timeStampE;
+    }
+
+    public void setTimeStampE(String timeStampE) {
+        this.timeStampE = timeStampE;
     }
 
     public String getDescription() {
