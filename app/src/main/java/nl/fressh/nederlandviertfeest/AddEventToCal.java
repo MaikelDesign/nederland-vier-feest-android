@@ -6,14 +6,9 @@ import java.util.Calendar;
 
 public class AddEventToCal{
 
-    public static Object onAddEventClicked;
-    String Title;
-    String Description;
-    String Location;
-    String Freq = "FREQ=YEARLY";
+    public Intent onAddEventClicked(String title, String description, String location) {
+        String freq = "FREQ=YEARLY";
 
-
-    public Intent onAddEventClicked() {
         Intent intent = new Intent(Intent.ACTION_INSERT);
         intent.setType("vnd.android.cursor.item/event");
 
@@ -22,13 +17,13 @@ public class AddEventToCal{
         long endTime = cal.getTimeInMillis()  + 60 * 60 * 1000;
 
         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime);
-        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,endTime);
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime);
         intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
 
-        intent.putExtra(CalendarContract.Events.TITLE, Title);
-        intent.putExtra(CalendarContract.Events.DESCRIPTION,  Description);
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, Location);
-        intent.putExtra(CalendarContract.Events.RRULE, Freq);
+        intent.putExtra(CalendarContract.Events.TITLE, title);
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, description);
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, location);
+        intent.putExtra(CalendarContract.Events.RRULE, freq);
 
         return intent;
     }

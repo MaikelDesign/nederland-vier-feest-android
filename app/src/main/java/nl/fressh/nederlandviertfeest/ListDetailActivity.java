@@ -135,15 +135,20 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        // get EventsInformation type
+        eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
+
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_calendar:
                 System.out.println("ADD TO CALENDAR");
 
                 AddEventToCal addEvent = new AddEventToCal();
+
 //                addEvent.onAddEventClicked();
 
-                startActivity(addEvent.onAddEventClicked());
+                startActivity(addEvent.onAddEventClicked(eventsInformation.getName(), eventsInformation.getDescription(), eventsInformation.getAddress(), eventsInformation.getTimeStampB()));
 
                 return true;
             case R.id.action_website:
