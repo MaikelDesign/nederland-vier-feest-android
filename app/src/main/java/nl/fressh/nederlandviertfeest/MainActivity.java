@@ -78,8 +78,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                                 eventsInformation.setName(event.getString("name"));
                                 eventsInformation.setThumbnailUrl(event.getJSONArray("images").getString(0));
-                                long timestamp = Long.parseLong(event.getString("timestamp_b")) * 1000;
-                                eventsInformation.setTimeStampB(getDate(timestamp));
+                                try {
+                                    long timestampB = Long.parseLong(event.getString("timestamp_b")) * 1000;
+                                    eventsInformation.setTimeStampB(getDate(timestampB));
+                                } catch (Exception ex) {
+                                    eventsInformation.setTimeStampB("");
+                                }
+                                try {
+                                    long timestampE = Long.parseLong(event.getString("timestamp_e")) * 1000;
+                                    eventsInformation.setTimeStampE(getDate(timestampE));
+                                } catch (Exception ex) {
+                                    eventsInformation.setTimeStampE("");
+                                }
                                 eventsInformation.setDescription(event.getString("description"));
                                 eventsInformation.setLocationName(event.getJSONObject("location_details").getString("name"));
                                 eventsInformation.setAddress(event.getJSONObject("location_details").getString("address"));
