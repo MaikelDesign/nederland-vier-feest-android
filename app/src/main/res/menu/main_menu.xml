@@ -4,13 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="nl.fressh.nederlandviertfeest.MainActivity">
     <item
-        android:id="@+id/action_about"
+        android:id="@+id/action_contact"
         android:orderInCategory="100"
         android:title="@string/action_about"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_opdracht1"
-        android:orderInCategory="100"
-        android:title="@string/action_opdr1"
         app:showAsAction="never" />
 </menu>

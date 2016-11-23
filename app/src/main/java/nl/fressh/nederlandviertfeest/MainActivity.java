@@ -136,12 +136,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_about:
+            case R.id.action_contact:
                 Intent intent = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent);
-                return true;
-            case R.id.action_opdracht1:
-                System.out.println("opdracht");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
