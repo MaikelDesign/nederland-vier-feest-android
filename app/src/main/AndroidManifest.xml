@@ -35,8 +35,8 @@
             android:label="@string/title_activity_list_detail"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".AboutActivity"
-            android:label="@string/Over_Nederland_Viert_Feest"
+            android:name=".ContactActivity"
+            android:label="@string/Contact_Nederland_Viert_Feest"
             android:parentActivityName=".MainActivity" />
 
         <receiver

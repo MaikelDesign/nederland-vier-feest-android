@@ -23,11 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
@@ -137,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_contact:
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
                 startActivity(intent);
                 return true;
             default:

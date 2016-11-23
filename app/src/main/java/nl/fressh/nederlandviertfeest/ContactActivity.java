@@ -12,12 +12,12 @@ import android.webkit.WebView;
  * Created by Maikel on 15-11-16.
  */
 
-public class AboutActivity extends AppCompatActivity {
+public class ContactActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_contact);
 
         WebView aboutWebsite = (WebView) findViewById(R.id.webView);
         aboutWebsite.getSettings().setJavaScriptEnabled(true);
