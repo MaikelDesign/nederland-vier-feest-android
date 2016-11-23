@@ -5,11 +5,11 @@ import android.graphics.Bitmap;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.transition.ChangeBounds;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.ChangeBounds;
-import android.transition.Scene;
-import android.transition.Transition;
-import android.transition.TransitionManager;
+import android.support.transition.Scene;
+import android.support.transition.Transition;
+import android.support.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -148,7 +148,12 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
 
 //                addEvent.onAddEventClicked();
 
-                startActivity(addEvent.onAddEventClicked(eventsInformation.getName(), eventsInformation.getDescription(), eventsInformation.getAddress(), eventsInformation.getTimeStampB()));
+                startActivity(addEvent.onAddEventClicked(
+                        eventsInformation.getName(),
+                        eventsInformation.getDescription(),
+                        eventsInformation.getAddress(),
+                        eventsInformation.getTimeStampB(),
+                        eventsInformation.getTimeStampE()));
 
                 return true;
             case R.id.action_website:
@@ -193,5 +198,11 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
 
         TransitionManager.go(mAnotherScene, transition);
         isInInitialScene = !isInInitialScene;
+
+        // description
+        TextView info = (TextView) findViewById(R.id.info);
+        assert info != null;
+        info.setText(eventsInformation.getDescription());
+        // make scrollable
     }
 }

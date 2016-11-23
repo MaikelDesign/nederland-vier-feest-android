@@ -79,14 +79,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                 eventsInformation.setName(event.getString("name"));
                                 eventsInformation.setThumbnailUrl(event.getJSONArray("images").getString(0));
                                 try {
-                                    long timestampB = Long.parseLong(event.getString("timestamp_b")) * 1000;
-                                    eventsInformation.setTimeStampB(getDate(timestampB));
+//                                    long timestampB = Long.parseLong(event.getString("timestamp_b")) * 1000;
+                                    eventsInformation.setTimeStampB(event.getString("timestamp_b"));
                                 } catch (Exception ex) {
                                     eventsInformation.setTimeStampB("");
                                 }
                                 try {
-                                    long timestampE = Long.parseLong(event.getString("timestamp_e")) * 1000;
-                                    eventsInformation.setTimeStampE(getDate(timestampE));
+//                                    long timestampE = Long.parseLong(event.getString("timestamp_e")) * 1000;
+                                    eventsInformation.setTimeStampE(event.getString("timestamp_e"));
                                 } catch (Exception ex) {
                                     eventsInformation.setTimeStampE("");
                                 }
@@ -173,14 +173,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    public String getDate(long timeStamp) {
 
-        try {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-            Date netDate = (new Date(timeStamp));
-            return dateFormat.format(netDate);
-        } catch (Exception ex) {
-            return "xx";
-        }
-    }
 }

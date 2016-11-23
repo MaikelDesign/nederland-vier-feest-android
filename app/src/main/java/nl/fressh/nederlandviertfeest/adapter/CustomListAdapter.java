@@ -19,6 +19,9 @@ import nl.fressh.nederlandviertfeest.model.EventsInformation;
 import nl.fressh.nederlandviertfeest.AppController;
 import nl.fressh.nederlandviertfeest.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class CustomListAdapter extends BaseAdapter {
@@ -78,9 +81,21 @@ public class CustomListAdapter extends BaseAdapter {
         location.setText(String.valueOf(m.getLocationName()));
 
         // Event date
-        timeStamp.setText(String.valueOf(m.getTimeStampB()));
+        long timeStampB = Long.parseLong(m.getTimeStampB()) * 1000;
+        timeStamp.setText(getDate(timeStampB));
 
         return convertView;
+    }
+
+    public String getDate(long timeStamp) {
+
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+            Date netDate = (new Date(timeStamp));
+            return dateFormat.format(netDate);
+        } catch (Exception ex) {
+            return "xx";
+        }
     }
 
 }
