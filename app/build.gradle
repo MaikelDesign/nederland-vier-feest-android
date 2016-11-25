@@ -19,6 +19,7 @@ android {
     }
 }
 
+//apply plugin: 'android-unit-test'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -33,4 +34,7 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.4+'
     compile 'com.android.volley:volley:1.0.0'
     testCompile 'junit:junit:4.12'
+    testCompile "org.assertj:assertj-core:1.7.0"
+    testCompile "org.robolectric:robolectric:3.1.4"
+
 }
