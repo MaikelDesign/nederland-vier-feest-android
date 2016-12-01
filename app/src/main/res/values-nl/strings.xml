@@ -8,5 +8,5 @@
     <string name="action_website">Bezoek website</string>
     <string name="action_calendar">Zet evenement in agenda</string>
     <string name="loading_information">Laden…</string>
-    <string name="swtch">Wissel</string>
+    <string name="swtch">Verberg kaart</string>
 </resources>
