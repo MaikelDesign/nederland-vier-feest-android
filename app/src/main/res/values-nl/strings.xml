@@ -9,4 +9,6 @@
     <string name="action_calendar">Zet evenement in agenda</string>
     <string name="loading_information">Laden…</string>
     <string name="swtch">Verberg kaart</string>
+    <string name="next">Volgende</string>
+    <string name="done">Klaar!</string>
 </resources>

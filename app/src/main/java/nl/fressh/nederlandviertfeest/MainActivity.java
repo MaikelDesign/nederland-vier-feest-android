@@ -25,6 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ProgressDialog pDialog;
     private List<EventsInformation> eventsInformationList = new ArrayList<>();
     private CustomListAdapter adapter;
+
+    private String maxPeriod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         try {
                             JSONArray eventArray = response.getJSONArray("events");
                             for (int i = 0; i < eventArray.length(); i++) {
+
                                 JSONObject event = eventArray.getJSONObject(i);
                                 EventsInformation eventsInformation = new EventsInformation();
 
