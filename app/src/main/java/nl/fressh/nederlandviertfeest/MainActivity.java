@@ -31,6 +31,7 @@ import java.util.List;
 
 import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
+import nl.fressh.nederlandviertfeest.model.RoundedNetworkImageView;
 
 import static nl.fressh.nederlandviertfeest.R.string.loading_information;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private CustomListAdapter adapter;
 
     private String maxPeriod;
+//    BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,5 +174,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+//
+//    bottomNavigationView.setOnNavigationItemSelectedListener(
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//            switch (item.getItemId()) {
+//                case R.id.action_favorites:
+//
+//                    break;
+//                case R.id.action_schedules:
+//
+//                    break;
+//                case R.id.action_music:
+//
+//                    break;
+//            }
+//            return false;
+//        }
+//    });
 
 }

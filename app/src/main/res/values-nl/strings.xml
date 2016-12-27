@@ -11,4 +11,7 @@
     <string name="swtch">Verberg kaart</string>
     <string name="next">Volgende</string>
     <string name="done">Klaar!</string>
+    <string name="text_favorites">Favorieten</string>
+    <string name="text_list">Evenementen</string>
+    <string name="text_settings">Instellingen</string>
 </resources>

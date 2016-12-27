@@ -18,6 +18,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 import nl.fressh.nederlandviertfeest.AppController;
 import nl.fressh.nederlandviertfeest.R;
+import nl.fressh.nederlandviertfeest.model.RoundedNetworkImageView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -62,8 +63,8 @@ public class CustomListAdapter extends BaseAdapter {
 
         if (imageLoader == null)
             imageLoader = AppController.getInstance().getImageLoader();
-        NetworkImageView thumbNail = (NetworkImageView) convertView
-                .findViewById(R.id.thumbnail);
+//        NetworkImageView thumbNail = (NetworkImageView) convertView.findViewById(R.id.thumbnail);
+        RoundedNetworkImageView thumbNail = ((RoundedNetworkImageView) convertView.findViewById(R.id.thumbnail));
         TextView name = (TextView) convertView.findViewById(R.id.name);
         TextView location = (TextView) convertView.findViewById(R.id.location);
         TextView timeStamp = (TextView) convertView.findViewById(R.id.timeStamp);

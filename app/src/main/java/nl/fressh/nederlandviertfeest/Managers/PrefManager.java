@@ -1,4 +1,4 @@
-package nl.fressh.nederlandviertfeest.Managers;
+package nl.fressh.nederlandviertfeest.managers;
 
 /**
  * Created by maikel on 26-12-16.

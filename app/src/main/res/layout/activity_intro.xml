@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="nl.fressh.nederlandviertfeest.MainActivity"
+    android:id="@+id/activity_intro"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="nl.fressh.nederlandviertfeest.IntroActivity"
     android:weightSum="12"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/intro_bg">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -43,6 +44,16 @@
             android:textColor="@color/colorWhite"
             style="@android:style/Widget.DeviceDefault.Button.Borderless" />
 
+        <LinearLayout
+            android:id="@+id/viewPagerCountDots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"/>
+
+
     </RelativeLayout>
+
+
 
 </LinearLayout>

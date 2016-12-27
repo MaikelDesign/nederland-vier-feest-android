@@ -10,4 +10,7 @@
     <string name="swtch">Hide map</string>
     <string name="next">Next</string>
     <string name="done">Done</string>
+    <string name="text_favorites">Favorites</string>
+    <string name="text_list">Events</string>
+    <string name="text_settings">Settings</string>
 </resources>

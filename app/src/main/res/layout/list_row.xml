@@ -2,24 +2,66 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:background="@drawable/layout_bg_listrow"
+    >
 
     <!-- Thumbnail Image -->
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/thumbnail"
+    <!--<com.android.volley.toolbox.NetworkImageView-->
+    <!--android:id="@+id/thumbnail"-->
+    <!--android:layout_width="80dp"-->
+    <!--android:layout_height="110dp"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_marginRight="8dp"-->
+    <!--android:scaleType="centerCrop" />  -->
+
+    <FrameLayout
         android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="8dp"
-        android:scaleType="centerCrop" />
+        android:layout_height="110dp"
+        android:layout_marginEnd="15dp"
+        android:layout_alignParentStart="true"
+        android:id="@+id/thumbFrame">
+
+        <nl.fressh.nederlandviertfeest.model.RoundedNetworkImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/timeStamp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="DATE"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:textAlignment="center"
+            android:gravity="center_vertical"/>
+
+
+        <!-- Date -->
+        <!--<TextView-->
+        <!--android:id="@+id/timeStamp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:textColor="@color/timestamp"-->
+        <!--android:textSize="@dimen/timestamp"-->
+        <!--/>-->
+
+    </FrameLayout>
+
+
 
     <!-- Name of event -->
     <TextView
         android:id="@+id/name"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/thumbnail"
-        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_alignTop="@+id/thumbFrame"
+        android:layout_toEndOf="@+id/thumbFrame"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/name"
         android:textStyle="bold" />
 
@@ -30,17 +72,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:layout_marginTop="1dip"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:textSize="@dimen/location" />
+        android:layout_toEndOf="@+id/thumbFrame"
+        android:textSize="@dimen/location"
+        android:textColor="@color/colorWhite"
+        />
 
-    <!-- Date -->
+    <!-- Add to favorite -->
     <TextView
-        android:id="@+id/timeStamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/favorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/name"
+        android:layout_marginTop="1dip"
+        android:layout_toEndOf="@+id/thumbFrame"
+        android:background="@color/colorWhite"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textColor="@color/timestamp"
-        android:textSize="@dimen/timestamp" />
+        />
 
 </RelativeLayout>
