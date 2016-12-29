@@ -1,18 +1,24 @@
 package nl.fressh.nederlandviertfeest;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -53,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // MARK - set custom actionBar
+        showActionBar();
 
         ListView listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, eventsInformationList);
@@ -129,26 +138,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.action_contact:
-                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 
     @Override
     public void onDestroy() {
@@ -159,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int postion, long l) {
 
+//        ImageButton addFav = (ImageButton) view.findViewById(R.id.favorite);
+//        System.out.println(addFav.getScaleType());
         EventsInformation eventInformation = (EventsInformation) adapterView.getAdapter().getItem(postion);
 
         Intent intent = new Intent(MainActivity.this, ListDetailActivity.class);
@@ -173,6 +164,36 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             pDialog = null;
         }
     }
+
+    private void showActionBar() {
+        LayoutInflater inflator = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.custom_actionbar_layout, null);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowHomeEnabled (false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        ImageButton imageButton = (ImageButton) v.findViewById(R.id.settings);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("settings cliced");
+            }
+        });
+
+        TextView setCity = (TextView) v.findViewById(R.id.setCity);
+        setCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("set city clicked");
+            }
+        });
+
+        actionBar.setCustomView(v);
+    }
+
 
 //
 //    bottomNavigationView.setOnNavigationItemSelectedListener(

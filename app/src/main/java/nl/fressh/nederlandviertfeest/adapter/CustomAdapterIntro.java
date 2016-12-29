@@ -1,6 +1,7 @@
 package nl.fressh.nederlandviertfeest.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +15,19 @@ import nl.fressh.nederlandviertfeest.R;
 
 public class CustomAdapterIntro extends PagerAdapter {
 
-
-    private int[] imgs = {R.drawable.pic1_web, R.drawable.pic2_web, R.drawable.pic3_web};
-    private String[] introTexts = {"Kies een gemeente", "Kies je favoriete kroeg", "Klaar!"};
+    private Context ctx;
+    private int[] imgs = {R.drawable.gemeente, R.drawable.favorites, R.drawable.icon};
+    private String[] introTexts = {
+            "Kies een gemeente",
+            "Kies je favoriete kroeg",
+            "Klaar!"
+    };
     private String[] stepInfo = {
             "Zodra de app opgestart is kiest u linksboven uw woonplaats.",
             "Zodra u een overzicht van evenementen ziet kunt u door het sterretje aan te vinken het evenement bewaren.",
             "Super, nu is het tijd om feest te vieren. Veel plezier met de Viert Feest app!"
     };
     private LayoutInflater inflater; //pomper, verbindt stukken aan elkaar en in elkaar
-    private Context ctx;
 
     public CustomAdapterIntro(Context ctx){
         this.ctx = ctx;
@@ -65,7 +69,6 @@ public class CustomAdapterIntro extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object){
         container.invalidate();
     }
-
 
 
 }

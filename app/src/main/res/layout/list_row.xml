@@ -78,16 +78,19 @@
         />
 
     <!-- Add to favorite -->
-    <TextView
+    <ImageView
+        android:contentDescription="desc"
         android:id="@+id/favorite"
-        android:layout_width="30dp"
+        android:src="@drawable/fav_star"
+        android:scaleType="center"
+        android:scaleY="1.5"
+        android:scaleX="1.5"
+        android:layout_width="50dp"
         android:layout_height="30dp"
-        android:layout_below="@id/name"
-        android:layout_marginTop="1dip"
-        android:layout_toEndOf="@+id/thumbFrame"
-        android:background="@color/colorWhite"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:background="#00ffffff"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="70dp"
         />
 
 </RelativeLayout>

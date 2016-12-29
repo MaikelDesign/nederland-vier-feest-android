@@ -13,4 +13,14 @@
     <string name="text_favorites">Favorites</string>
     <string name="text_list">Events</string>
     <string name="text_settings">Settings</string>
+
+        <string name="title_intro_first">Kies een gemeente</string>
+        <string name="title_intro_second">Kies je favoriete kroeg</string>
+        <string name="title_intro_third">Klaar!</string>
+
+        <string name="text_intro_first">Zodra de app opgestart is kiest u linksboven uw woonplaats.</string>
+        <string name="text_intro_second">Zodra u een overzicht van evenementen ziet kunt u door het sterretje aan te vinken het evenement bewaren.</string>
+        <string name="text_intro_third">Super, nu is het tijd om feest te vieren. Veel plezier met de Viert Feest app!</string>
+
+
 </resources>

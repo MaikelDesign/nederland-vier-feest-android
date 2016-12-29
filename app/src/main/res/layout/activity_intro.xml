@@ -11,18 +11,21 @@
     android:background="@drawable/intro_bg">
 
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:gravity="center"
-        android:text="LOGO PLACEHOLDER"
-        android:id="@+id/textView2" />
+        android:src="@drawable/vvf_logo"
+        android:scaleType="center"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:id="@+id/vvfLogo" />
 
     <!--fragment slider-->
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_width="match_parent"
         android:layout_weight="4"
         />
