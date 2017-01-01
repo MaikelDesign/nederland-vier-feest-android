@@ -54,7 +54,6 @@
                 android:text="@string/swtch"
                 />
 
-            <include layout="@layout/scene_start" />
 
         </LinearLayout>
     </LinearLayout>

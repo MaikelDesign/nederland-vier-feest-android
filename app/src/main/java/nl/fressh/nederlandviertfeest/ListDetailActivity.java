@@ -2,6 +2,7 @@ package nl.fressh.nederlandviertfeest;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import nl.fressh.nederlandviertfeest.model.BlurBuilder;
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 
 public class ListDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -55,6 +58,7 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+
         // get EventsInformation type
         eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
 
@@ -69,10 +73,12 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         assert thumbNail != null;
         thumbNail.setImageUrl(eventsInformation.getThumbnailUrl(), imageLoader);
 
+
+
         // description
         TextView info = (TextView) findViewById(R.id.info);
         assert info != null;
-        info.setText(eventsInformation.getDescription());
+//        info.setText(eventsInformation.getDescription());
 
         // get LatLong from address
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -91,85 +97,9 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
         position = new LatLng(latitude, longitude);
 
         // google maps
-        MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        map.getMapAsync(this);
+//        MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+//        map.getMapAsync(this);
 
-        // on text description click
-        info.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-
-        // animation info
-        msceneRoot = (ViewGroup) findViewById(R.id.rootView);
-
-        Button btn = (Button) findViewById(R.id.button1);
-//        TextView infoView = (TextView) findViewById(R.id.info);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("click btn");
-                performTransition(new ChangeBounds());
-            }
-        });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.detail_menu, menu);
-        // check if there is a website available
-        //EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
-        if (eventsInformation.getWebsite().equals("")) {
-            MenuItem item = menu.findItem(R.id.action_website);
-            item.setVisible(false);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // get EventsInformation type
-        eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
-
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.action_calendar:
-                System.out.println("ADD TO CALENDAR");
-
-                AddEventToCal addEvent = new AddEventToCal();
-
-//                addEvent.onAddEventClicked();
-
-                startActivity(addEvent.onAddEventClicked(
-                        eventsInformation.getName(),
-                        eventsInformation.getDescription(),
-                        eventsInformation.getAddress(),
-                        eventsInformation.getTimeStampB(),
-                        eventsInformation.getTimeStampE()));
-
-                return true;
-            case R.id.action_website:
-                // get EventsInformation type
-                //EventsInformation eventsInformation = (EventsInformation) getIntent().getSerializableExtra("eventInformation");
-                String url = eventsInformation.getWebsite();
-                // check if http:// or https:// is before the url
-                if (!url.startsWith("http://") && !url.startsWith("https://"))
-                    url = "http://" + url;
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
@@ -190,19 +120,4 @@ public class ListDetailActivity extends AppCompatActivity implements OnMapReadyC
                 .icon(BitmapDescriptorFactory.fromBitmap(mapsMarkerBitmap)));
     }
 
-
-    private void performTransition(Transition transition) {
-        int layoutIdAtEndOfTransition = isInInitialScene ? R.layout.scene_end : R.layout.scene_start;
-
-        Scene mAnotherScene = Scene.getSceneForLayout(msceneRoot, layoutIdAtEndOfTransition, ListDetailActivity.this);
-
-        TransitionManager.go(mAnotherScene, transition);
-        isInInitialScene = !isInInitialScene;
-
-        // description
-        TextView info = (TextView) findViewById(R.id.info);
-        assert info != null;
-        info.setText(eventsInformation.getDescription());
-        // make scrollable
-    }
 }
