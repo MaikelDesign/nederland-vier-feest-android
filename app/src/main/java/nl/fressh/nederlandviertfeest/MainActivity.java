@@ -3,19 +3,23 @@ package nl.fressh.nederlandviertfeest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,11 +35,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import nl.fressh.nederlandviertfeest.adapter.CustomListAdapter;
+import nl.fressh.nederlandviertfeest.fragments.favorites_fragment;
 import nl.fressh.nederlandviertfeest.model.EventsInformation;
 import nl.fressh.nederlandviertfeest.model.RoundedNetworkImageView;
 
@@ -51,9 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ProgressDialog pDialog;
     private List<EventsInformation> eventsInformationList = new ArrayList<>();
     private CustomListAdapter adapter;
-
-    private String maxPeriod;
-//    BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+    private Boolean buttonState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +137,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
 
+
+
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_favorites:
+                                System.out.println("favorites");
+                                // TODO: add fragments to tabs
+                                break;
+                            case R.id.action_schedules:
+                                System.out.println("schedules");
+                                // TODO: add fragments to tabs
+                                break;
+                        }
+                        return true;
+                    }
+                }
+        );
+
     }
 
 
@@ -183,11 +210,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        TextView setCity = (TextView) v.findViewById(R.id.setCity);
+        final TextView setCity = (TextView) v.findViewById(R.id.setCity);
         setCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("set city clicked");
+                if (setCity.isSelected()) {
+                    setCity.setSelected(false);
+                } else {
+                    setCity.setSelected(true);
+                }
+
             }
         });
 
@@ -195,24 +228,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-//
-//    bottomNavigationView.setOnNavigationItemSelectedListener(
-//            new BottomNavigationView.OnNavigationItemSelectedListener() {
-//        @Override
-//        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//            switch (item.getItemId()) {
-//                case R.id.action_favorites:
-//
-//                    break;
-//                case R.id.action_schedules:
-//
-//                    break;
-//                case R.id.action_music:
-//
-//                    break;
-//            }
-//            return false;
-//        }
-//    });
+
 
 }

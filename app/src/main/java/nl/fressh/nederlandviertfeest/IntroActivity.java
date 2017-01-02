@@ -25,7 +25,6 @@ public class IntroActivity extends AppCompatActivity {
     private PrefManager prefManager;
     private int dotsCount;
     private LinearLayout pager_indicator;
-    private ImageView[] dots;
 
 
     @Override
@@ -34,6 +33,7 @@ public class IntroActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
@@ -58,6 +58,8 @@ public class IntroActivity extends AppCompatActivity {
         viewPager.setOnPageChangeListener(myOnPageChangeListener);
 
         getSupportActionBar().hide();
+
+        setupPagination();
 
     }
 
@@ -89,16 +91,29 @@ public class IntroActivity extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            System.out.println(position);
 
-            // MARK - activate right dot
-//            for (int i = 0; i < dotsCount; i++) {
-//                dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
-//            }
-//            dots[position].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
+            // MARK - activate right dot (pagination)
+            LinearLayout ll = (LinearLayout) findViewById(R.id.viewPagerCountDots);
+            int childCount = ll.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+
+                // set every child to nonselected item dot
+                View a = ll.getChildAt(i);
+                a.setBackground(getResources().getDrawable(R.drawable.nonselecteditem_dot));
+
+                // if child number equals current position > switch backgrounds to selected dot
+                if (i == position) {
+                    View b = ll.getChildAt(i);
+                    b.setBackground(getResources().getDrawable(R.drawable.selecteditem_dot));
+                }
+            }
 
             // MARK - change button value on pager
             switch (position) {
+                case 0:
+                    break;
+                case 1:
+                    break;
                 case 2:  next.setText(R.string.done);
                     break;
                 default: next.setText(R.string.next);
@@ -116,25 +131,28 @@ public class IntroActivity extends AppCompatActivity {
         finish();
     }
 
-    private void setPaginationController() {
+    private void setupPagination() {
+
         dotsCount = adapter.getCount();
-        dots = new ImageView[dotsCount];
+        LinearLayout ll = (LinearLayout) findViewById(R.id.viewPagerCountDots);
 
         for (int i = 0; i < dotsCount; i++) {
-            dots[i] = new ImageView(this);
-            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-
-            params.setMargins(4, 0, 4, 0);
-
-            //pager_indicator.addView(dots[i], params);
+            Button dot = new Button(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(50,50);
+            params.setMarginEnd(30);
+            dot.setLayoutParams(params);
+            dot.setId(i);
+            System.out.println("dotId: " + dot.getId());
+            if (i == 0) {
+                dot.setBackground(getResources().getDrawable(R.drawable.selecteditem_dot));
+            } else {
+                dot.setBackground(getResources().getDrawable(R.drawable.nonselecteditem_dot));
+            }
+            ll.addView(dot);
         }
 
-//        dots[0].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
+
     }
+
 
 }

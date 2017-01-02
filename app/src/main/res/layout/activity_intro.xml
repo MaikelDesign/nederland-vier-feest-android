@@ -35,6 +35,17 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
+
+
+        <LinearLayout
+            android:id="@+id/viewPagerCountDots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,16 +58,10 @@
             android:textColor="@color/colorWhite"
             style="@android:style/Widget.DeviceDefault.Button.Borderless" />
 
-        <LinearLayout
-            android:id="@+id/viewPagerCountDots"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal"/>
+
+        <!--android:id="@+id/btn_next"-->
 
 
     </RelativeLayout>
-
-
 
 </LinearLayout>

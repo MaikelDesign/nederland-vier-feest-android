@@ -6,17 +6,18 @@
     android:orientation="vertical"
     >
 
-    <TextView
+    <Button
         android:id="@+id/setCity"
+        android:visibility="invisible"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/set_city_bg"
-        android:textColor="@color/colorWhite"
+        android:layout_height="match_parent"
+        android:background="@drawable/set_city_bg_selector"
+        android:textColor="@color/selector_primary_invert"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:textAlignment="center"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         android:text="Gemeente"/>
 
     <ImageView
@@ -29,6 +30,7 @@
 
     <ImageButton
         android:id="@+id/settings"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_settings"
