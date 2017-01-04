@@ -5,18 +5,248 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/eventimg" />
+    <RelativeLayout
+        android:id="@+id/detailFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imageView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/eventimg" />
+
+    </RelativeLayout>
+
+
+
+    <!--Cart style + layout-->
+    <LinearLayout
+        android:id="@+id/cardStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/bgImage"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="60dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:padding="0dp"
+        android:background="@drawable/layout_bg"
+        android:weightSum="9"
+        android:orientation="vertical">
+
+        <!--title-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/darkGrey"
+            android:textSize="9pt"
+            android:text="Title"
+            android:id="@+id/detailTitle"/>
+
+        <!--location-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/darkGrey"
+            android:text="Location"
+            android:id="@+id/detailLocation"/>
+
+        <!--card image-->
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/detailImg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:scaleType="centerCrop"
+            />
+
+        <!--Date and Time part-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/detailDateTime"
+            android:weightSum="2"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <!--Date part-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/detailDate"
+                android:paddingStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="datum"
+                    android:textSize="6pt"
+                    android:textAllCaps="true"
+                    android:textColor="@color/lightGrey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/detailDateContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="-"
+                    android:textColor="@color/darkGrey"
+                    android:layout_weight="1"/>
 
 
+            </LinearLayout>
+
+            <!--Time part-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="2"
+                android:paddingStart="10dp"
+                android:orientation="vertical"
+                android:id="@+id/detailTime">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="tijd"
+                    android:textSize="6pt"
+                    android:textAllCaps="true"
+                    android:textColor="@color/lightGrey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/detailTimeContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="-"
+                    android:textColor="@color/darkGrey"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Ticket and Website part-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:id="@+id/detailTicketsWebsite"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <!--Ticket part-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:id="@+id/detailTickets"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:layout_weight="1"
+                android:weightSum="2">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="kaartjes"
+                    android:textAllCaps="true"
+                    android:textSize="6pt"
+                    android:textColor="@color/lightGrey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/detailTicketContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="-"
+                    android:textColor="@color/darkGrey"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <!--Website part-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:weightSum="2"
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:id="@+id/detailWebsite">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="website"
+                    android:textAllCaps="true"
+                    android:textSize="6pt"
+                    android:textColor="@color/lightGrey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/detailWebsiteContent"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="-"
+                    android:textColor="@color/darkGrey"
+                    android:layout_weight="1"
+                    android:autoLink="web"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Location and favorite part-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detailLocationStar"
+            android:layout_weight="2"
+            android:weightSum="4"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorOrange"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

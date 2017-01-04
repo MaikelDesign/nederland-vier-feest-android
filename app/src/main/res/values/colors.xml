@@ -9,5 +9,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="noSelection">#888888</color>
     <color name="timestamp">#888888</color>
+    <color name="darkGrey">#151515</color>
+    <color name="lightGrey">#6b6b6b</color>
 
 </resources>

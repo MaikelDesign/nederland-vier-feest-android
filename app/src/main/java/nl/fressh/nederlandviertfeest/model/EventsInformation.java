@@ -16,6 +16,7 @@ public class EventsInformation implements Serializable {
     private String address;
     private String place;
     private String website;
+    private String price;
 
 
     public String getName() {
@@ -88,5 +89,13 @@ public class EventsInformation implements Serializable {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

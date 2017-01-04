@@ -114,6 +114,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                     eventsInformation.setWebsite("");
                                 }
 
+                                try {
+                                    eventsInformation.setPrice("€ " + event.getJSONObject("ticket_info").getString("tp_regular"));
+                                } catch (Exception ex) {
+                                    eventsInformation.setPrice("gratis");
+                                }
+
                                 // adding event details to eventsInformationList array
                                 eventsInformationList.add(eventsInformation);
                                 hidePDialog();

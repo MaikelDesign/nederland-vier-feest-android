@@ -36,7 +36,6 @@
         android:layout_weight="1">
 
 
-
         <LinearLayout
             android:id="@+id/viewPagerCountDots"
             android:layout_width="match_parent"
